@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Fraunces", "Iowan Old Style", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Salt & Stone Wellness brand palette -- warm, muted, editorial.
+     Deliberately distinct from WebVybe's own blue/green brand: this is the
+     client's identity, not the agency's. */
+  --color-clay: #b06a4e;
+  --color-clay-deep: #8f4f38;
+  --color-pine: #33443b;
+  --color-pine-soft: #4c5f52;
+  --color-sand: #efe6d8;
+  --color-cream: #faf6ee;
+  --color-stone: #8a8177;
+  --color-ink: #2a2724;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: var(--color-cream);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+::selection {
+  background: var(--color-sand);
+  color: var(--color-clay-deep);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-clay-deep);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@layer components {
+  .btn,
+  .btn-primary,
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    padding: 0.8rem 1.65rem;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease;
+  }
+  .btn:active,
+  .btn-primary:active,
+  .btn-secondary:active {
+    transform: translateY(0);
+  }
+  .btn-primary {
+    background: var(--color-clay-deep);
+    color: #fff;
+    box-shadow: 0 8px 20px -8px color-mix(in srgb, var(--color-clay-deep) 55%, transparent);
+  }
+  .btn-primary:hover {
+    background: color-mix(in srgb, var(--color-clay-deep) 88%, black);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px -8px color-mix(in srgb, var(--color-clay-deep) 60%, transparent);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-pine);
+    border: 1px solid color-mix(in srgb, var(--color-pine) 35%, transparent);
+  }
+  .btn-secondary:hover {
+    border-color: var(--color-pine);
+    background: color-mix(in srgb, var(--color-pine) 6%, transparent);
+    transform: translateY(-2px);
+  }
+  .nav-link {
+    position: relative;
+    padding-bottom: 0.25rem;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 1.5px;
+    width: 100%;
+    background: var(--color-clay-deep);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 200ms ease;
+  }
+  .nav-link:hover::after,
+  .nav-link.is-active::after {
+    transform: scaleX(1);
+  }
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-clay-deep);
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.page-transition {
+  animation: page-in 320ms ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition {
+    animation: none;
+  }
+}
