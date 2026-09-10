@@ -162,7 +162,7 @@ export const membership = {
 // across the site (the way a strong trust/credibility strip works).
 export const trustPoints = [
   { label: 'Licensed', detail: `${salon.founderName}, practicing since 2011` },
-  { label: 'Same therapist every visit', detail: 'You keep one provider, not a rotating roster' },
+  { label: 'Same therapist every visit', detail: 'We match you with one provider who gets to know you over time' },
   { label: 'No mid-treatment upsells', detail: 'Add-ons are mentioned once, at the end, if at all' },
   { label: 'Month-to-month membership', detail: 'No contract, cancel anytime from your client portal' },
 ]
