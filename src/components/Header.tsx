@@ -6,7 +6,6 @@ const links = [
   { to: '/services', label: 'Services & Pricing' },
   { to: '/gallery', label: 'Gallery' },
   { to: '/about', label: 'Our Story' },
-  { to: '/contact', label: 'Contact' },
 ]
 
 export default function Header() {
