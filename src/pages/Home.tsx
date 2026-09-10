@@ -38,8 +38,9 @@ export default function Home() {
               {salon.tagline}
             </h1>
             <p className="mt-5 max-w-md text-base text-stone">
-              Massage, facials, and body work by appointment only — a small studio built around one idea: slow down,
-              and be genuinely looked after for an hour.
+              Massage, facials, and body work <span className="font-semibold text-clay-deep">by appointment only</span> — a
+              small studio built around one idea: <span className="font-semibold text-clay-deep">slow down</span>, and be
+              genuinely looked after for an hour.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <NavLink to="/contact" className="btn-primary">
