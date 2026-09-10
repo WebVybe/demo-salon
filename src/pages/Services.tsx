@@ -1,6 +1,13 @@
 import { NavLink } from 'react-router-dom'
 import { bookingPolicy, giftCards, membership, serviceCategories } from '../content/salon'
 
+// Matches the slug built in Contact.tsx from name + duration, so a deep link
+// here always lands on the same specific bookable item there (several
+// services share a name across durations, e.g. "Signature Swedish").
+function slugify(name: string, duration: string) {
+  return `${name}-${duration}`.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+}
+
 export default function Services() {
   return (
     <div className="page-transition mx-auto max-w-5xl px-6 py-16">
@@ -49,7 +56,7 @@ export default function Services() {
                     <div className="flex shrink-0 items-center gap-4">
                       <p className="font-serif text-base text-clay-deep">{item.price}</p>
                       <NavLink
-                        to={`/contact?service=${encodeURIComponent(item.name)}`}
+                        to={`/contact?service=${encodeURIComponent(slugify(item.name, item.duration))}`}
                         className="text-xs font-semibold text-pine underline-offset-2 hover:underline"
                       >
                         Book this →
