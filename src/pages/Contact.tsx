@@ -1,9 +1,22 @@
 import { type FormEvent, useState } from 'react'
-import { hours, salon } from '../content/salon'
+import { useSearchParams } from 'react-router-dom'
+import { faqs, giftCards, hours, serviceCategories, salon } from '../content/salon'
+
+// Single list of bookable items derived from the same source of truth as
+// the Services page, so a "Book this" link there always matches an option
+// here -- no separately hand-typed dropdown to fall out of sync.
+const serviceOptions = [
+  ...new Set(serviceCategories.flatMap((cat) => cat.items.map((item) => item.name))),
+  'The Steady Membership',
+  'Not sure yet',
+]
 
 export default function Contact() {
+  const [params] = useSearchParams()
+  const preselect = params.get('service') ?? ''
   const [submitted, setSubmitted] = useState(false)
-  const [service, setService] = useState('')
+  const [service, setService] = useState(serviceOptions.includes(preselect) ? preselect : '')
+  const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -96,15 +109,9 @@ export default function Contact() {
                   className="w-full rounded-lg border border-black/10 bg-cream px-3.5 py-2.5 text-ink outline-none focus:border-clay-deep"
                 >
                   <option value="">Select a service</option>
-                  <option>Signature Swedish Massage</option>
-                  <option>Deep Tissue Massage</option>
-                  <option>Prenatal Massage</option>
-                  <option>Signature Facial</option>
-                  <option>Gua Sha Lift Facial</option>
-                  <option>Express Glow Facial</option>
-                  <option>Back Facial</option>
-                  <option>The Steady Membership</option>
-                  <option>Not sure yet</option>
+                  {serviceOptions.map((opt) => (
+                    <option key={opt}>{opt}</option>
+                  ))}
                 </select>
               </label>
 
@@ -154,6 +161,39 @@ export default function Contact() {
               ))}
             </ul>
           </div>
+          <div>
+            <p className="eyebrow mb-2">Gift Cards</p>
+            <p className="text-sm text-stone">{giftCards.blurb}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Full FAQ + policies, bundled on the page where people are about to
+          book -- the way exhale spa combines its FAQ and booking policies
+          on one page next to the decision, rather than scattering them. */}
+      <div className="mt-20">
+        <p className="eyebrow mb-3">Before you book</p>
+        <h2 className="font-serif text-3xl text-ink">Questions & policies</h2>
+        <div className="mt-8 divide-y divide-black/5 rounded-2xl border border-black/5 bg-white">
+          {faqs.map((f, i) => {
+            const isOpen = openFaq === i
+            return (
+              <div key={f.q}>
+                <button
+                  type="button"
+                  onClick={() => setOpenFaq(isOpen ? null : i)}
+                  aria-expanded={isOpen}
+                  className="flex w-full items-center justify-between gap-4 p-5 text-left"
+                >
+                  <span className="font-medium text-ink">{f.q}</span>
+                  <span className={`shrink-0 text-clay-deep transition-transform ${isOpen ? 'rotate-45' : ''}`}>
+                    +
+                  </span>
+                </button>
+                {isOpen && <p className="px-5 pb-5 text-sm text-stone">{f.a}</p>}
+              </div>
+            )
+          })}
         </div>
       </div>
     </div>

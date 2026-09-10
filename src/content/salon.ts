@@ -143,6 +143,20 @@ export const serviceCategories: ServiceCategory[] = [
   },
 ]
 
+// Real spa/wellness brands (Aman, Exhale) put booking/cancellation terms
+// right on the treatment menu itself, not just buried in an FAQ -- so this
+// gets surfaced inline on the Services page too, next to the prices it
+// actually affects.
+export const bookingPolicy =
+  'Free cancellation or reschedule up to 24 hours before your appointment. Inside 24 hours, we charge 50% of the service price to hold the room for the next guest.'
+
+// Small studios that charge $85-$190 a session commonly sell gift cards --
+// this doesn't need an online checkout to be real; a phone/email/in-studio
+// option is honest for a business this size.
+export const giftCards = {
+  blurb: 'Gift cards are available in any amount — by phone, by email, or in person at the studio.',
+}
+
 export const membership = {
   name: 'The Steady',
   price: '$119/month',

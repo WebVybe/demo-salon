@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { membership, serviceCategories } from '../content/salon'
+import { bookingPolicy, giftCards, membership, serviceCategories } from '../content/salon'
 
 export default function Services() {
   return (
@@ -9,6 +9,9 @@ export default function Services() {
       <p className="mt-4 max-w-xl text-stone">
         Prices reflect a single session; add-ons stack onto any massage. If you're not sure what to book, tell us
         what's going on in the contact form and we'll suggest something.
+      </p>
+      <p className="mt-3 max-w-xl text-sm text-stone/80">
+        {bookingPolicy} {giftCards.blurb}
       </p>
 
       <nav
@@ -37,14 +40,22 @@ export default function Services() {
 
             <div className="mt-6 divide-y divide-black/5 rounded-2xl border border-black/5 bg-white">
               {cat.items.map((item) => (
-                <div key={`${item.name}-${item.duration}`} className="flex flex-col gap-1 p-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+                <div key={`${item.name}-${item.duration}`} className="flex flex-col gap-2 p-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
                   <div>
                     <p className="font-medium text-ink">
                       {item.name} <span className="text-stone">· {item.duration}</span>
                     </p>
                     <p className="mt-1 text-sm text-stone">{item.description}</p>
                   </div>
-                  <p className="shrink-0 font-serif text-lg text-clay-deep">{item.price}</p>
+                  <div className="flex shrink-0 items-center gap-4 sm:flex-col sm:items-end sm:gap-1.5">
+                    <p className="font-serif text-lg text-clay-deep">{item.price}</p>
+                    <NavLink
+                      to={`/contact?service=${encodeURIComponent(item.name)}`}
+                      className="text-xs font-semibold text-pine underline-offset-2 hover:underline"
+                    >
+                      Book this →
+                    </NavLink>
+                  </div>
                 </div>
               ))}
             </div>
