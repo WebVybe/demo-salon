@@ -169,11 +169,11 @@ export default function Contact() {
         urgent, call the studio directly.
       </p>
 
-      <div className="mt-10 grid gap-10 lg:grid-cols-[1.2fr_1fr]">
-        <div className="rounded-2xl border border-black/5 bg-white p-6 sm:p-8">
+      <div className="mt-10 grid min-w-0 gap-10 lg:grid-cols-[1.2fr_1fr]">
+        <div className="min-w-0 rounded-2xl border border-black/5 bg-white p-6 sm:p-8">
           {/* Step indicator */}
           {!submitted && (
-            <ol className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-xs font-medium text-stone">
+            <ol className="mb-8 flex min-w-0 flex-wrap items-center gap-x-2 gap-y-2 text-xs font-medium text-stone">
               {stepOrder.map((s, i) => (
                 <li key={s} className="flex items-center gap-2">
                   <span
@@ -243,7 +243,7 @@ export default function Contact() {
               </div>
 
               <h2 className="mt-6 font-serif text-xl text-ink">Choose a day</h2>
-              <div className="mt-3 flex gap-2 overflow-x-auto pb-2">
+              <div className="mt-3 flex min-w-0 gap-2 overflow-x-auto pb-2">
                 {upcomingDays.map((day, i) => (
                   <button
                     key={day.date.toISOString()}
@@ -417,7 +417,7 @@ export default function Contact() {
           )}
         </div>
 
-        <div className="space-y-8">
+        <div className="min-w-0 space-y-8">
           <div>
             <p className="eyebrow mb-2">Call or Email</p>
             <p className="text-stone">
