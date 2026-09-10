@@ -33,7 +33,13 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-4">
+          <a
+            href={salon.phoneHref}
+            className="hidden text-sm font-medium text-stone transition-colors hover:text-ink lg:inline-flex"
+          >
+            {salon.phone}
+          </a>
           <NavLink to="/contact" className="btn-primary hidden !px-5 !py-2.5 text-sm sm:inline-flex">
             Book Now
           </NavLink>

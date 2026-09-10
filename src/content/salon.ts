@@ -36,6 +36,9 @@ export type ServiceItem = {
 export type ServiceCategory = {
   id: string
   title: string
+  /** Short benefit-first label shown next to the category title — what this
+      category does for you, not just what it's called. */
+  benefit: string
   intro: string
   items: ServiceItem[]
 }
@@ -44,6 +47,7 @@ export const serviceCategories: ServiceCategory[] = [
   {
     id: 'massage',
     title: 'Massage',
+    benefit: 'Release tension',
     intro:
       'Every massage opens with a two-minute check-in so pressure and focus areas are set before hands ever touch the table.',
     items: [
@@ -82,6 +86,7 @@ export const serviceCategories: ServiceCategory[] = [
   {
     id: 'skincare',
     title: 'Facials & Skincare',
+    benefit: 'Renew & clarify skin',
     intro: 'Facials are built around what your skin is doing that week, not a fixed script.',
     items: [
       {
@@ -113,6 +118,7 @@ export const serviceCategories: ServiceCategory[] = [
   {
     id: 'bodywork',
     title: 'Body Work & Add-Ons',
+    benefit: 'Add depth to any session',
     intro: 'Small additions that change how a session feels, without changing the price of admission much.',
     items: [
       {
@@ -146,7 +152,40 @@ export const membership = {
     'No long-term contract — pause or cancel anytime',
     'Unused visits roll over one month',
   ],
+  // Real math from the prices above, not a marketing estimate: the
+  // included session alone already undercuts most single-visit prices.
+  mathNote:
+    'The included session alone (a $125–$175 value) already covers most of the $119 membership cost — before the 15% discount on anything else that month.',
 }
+
+// Cluster of credibility signals, grouped in one place rather than scattered
+// across the site (the way a strong trust/credibility strip works).
+export const trustPoints = [
+  { label: 'Licensed', detail: `${salon.founderName}, practicing since 2011` },
+  { label: 'Same therapist every visit', detail: 'You keep one provider, not a rotating roster' },
+  { label: 'No mid-treatment upsells', detail: 'Add-ons are mentioned once, at the end, if at all' },
+  { label: 'Month-to-month membership', detail: 'No contract, cancel anytime from your client portal' },
+]
+
+// What actually happens between booking and leaving — laid out as steps so
+// a first-time visitor knows exactly what to expect before they commit.
+export const firstVisitSteps = [
+  {
+    step: '01',
+    title: 'Tell us what you need',
+    body: 'Book online or call — what you want out of the session, anything to avoid, and a few times that work.',
+  },
+  {
+    step: '02',
+    title: 'A two-minute intake',
+    body: 'On arrival: pressure, focus areas, and product intensity, confirmed before anything starts.',
+  },
+  {
+    step: '03',
+    title: 'One room, no rush',
+    body: 'Sessions start on time and end when they are supposed to — no back-to-back double-booking.',
+  },
+]
 
 export const faqs = [
   {

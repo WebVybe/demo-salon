@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import DecorPanel from '../components/DecorPanel'
+import TrustStrip from '../components/TrustStrip'
 import { hours, salon } from '../content/salon'
 
 export default function About() {
@@ -24,6 +25,10 @@ export default function About() {
           </div>
           <DecorPanel variant={4} className="h-72 w-full sm:h-96" label="Studio glimpse — placeholder art, real photography pending" />
         </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-16">
+        <TrustStrip />
       </section>
 
       <section className="border-y border-black/5 bg-sand">

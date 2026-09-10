@@ -1,5 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import DecorPanel from '../components/DecorPanel'
+import FirstVisitSteps from '../components/FirstVisitSteps'
+import TrustStrip from '../components/TrustStrip'
 import { faqs, membership, salon, serviceCategories } from '../content/salon'
 
 const highlights = serviceCategories.map((c) => ({
@@ -65,6 +67,12 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Trust/credibility cluster */}
+      <section className="mx-auto max-w-6xl px-6 py-16">
+        <p className="eyebrow mb-3">Why locals choose us</p>
+        <TrustStrip />
+      </section>
+
       {/* Service highlights */}
       <section className="mx-auto max-w-6xl px-6 py-20">
         <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
@@ -101,6 +109,7 @@ export default function Home() {
               Built for people who want this to be a habit, not a splurge. No initiation fee, no long-term
               commitment.
             </p>
+            <p className="mt-4 max-w-md text-xs text-sand/70">{membership.mathNote}</p>
             <NavLink to="/contact" className="btn-primary mt-6 !bg-clay hover:!bg-clay-deep">
               Ask About Membership
             </NavLink>
@@ -114,6 +123,11 @@ export default function Home() {
             ))}
           </ul>
         </div>
+      </section>
+
+      {/* First-visit walkthrough */}
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <FirstVisitSteps />
       </section>
 
       {/* FAQ preview */}

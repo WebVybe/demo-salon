@@ -32,6 +32,16 @@ export default function Gallery() {
         ))}
       </div>
 
+      {/* Typography carries what a photo would, until there is one --
+          generous whitespace and a large serif line instead of more
+          gradient panels. */}
+      <div className="mx-auto mt-20 max-w-2xl py-4">
+        <p className="font-serif text-2xl leading-relaxed text-pine sm:text-3xl">
+          Low light in the treatment rooms. A quiet hallway between the reception nook and the courtyard entrance.
+          One session at a time — no music competing with the next room's.
+        </p>
+      </div>
+
       <div className="mt-14 text-center">
         <p className="text-stone">Prefer to just come see it in person?</p>
         <NavLink to="/contact" className="btn-primary mt-4 inline-flex">

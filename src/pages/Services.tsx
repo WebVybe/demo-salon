@@ -11,10 +11,28 @@ export default function Services() {
         what's going on in the contact form and we'll suggest something.
       </p>
 
+      <nav
+        aria-label="Jump to a service category"
+        className="sticky top-16 z-30 -mx-6 mt-8 flex gap-2 overflow-x-auto border-y border-black/5 bg-cream/95 px-6 py-3 backdrop-blur-md"
+      >
+        {serviceCategories.map((cat) => (
+          <a
+            key={cat.id}
+            href={`#${cat.id}`}
+            className="shrink-0 rounded-full border border-black/10 px-4 py-1.5 text-sm font-medium text-stone transition-colors hover:border-clay-deep hover:text-ink"
+          >
+            {cat.title}
+          </a>
+        ))}
+      </nav>
+
       <div className="mt-12 space-y-16">
         {serviceCategories.map((cat) => (
-          <div key={cat.id} id={cat.id}>
-            <h2 className="font-serif text-2xl text-pine">{cat.title}</h2>
+          <div key={cat.id} id={cat.id} className="scroll-mt-32">
+            <div className="flex flex-wrap items-baseline gap-3">
+              <h2 className="font-serif text-2xl text-pine">{cat.title}</h2>
+              <span className="eyebrow text-clay-deep/80">{cat.benefit}</span>
+            </div>
             <p className="mt-2 max-w-2xl text-sm text-stone">{cat.intro}</p>
 
             <div className="mt-6 divide-y divide-black/5 rounded-2xl border border-black/5 bg-white">
@@ -44,6 +62,7 @@ export default function Services() {
             <li key={b}>{b}</li>
           ))}
         </ul>
+        <p className="mx-auto mt-4 max-w-md text-xs text-sand/70">{membership.mathNote}</p>
         <NavLink to="/contact" className="btn-primary mt-6 inline-flex !bg-clay hover:!bg-clay-deep">
           Ask About Membership
         </NavLink>
