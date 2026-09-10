@@ -1,143 +1,108 @@
 import { NavLink } from 'react-router-dom'
 import DecorPanel from '../components/DecorPanel'
 import FirstVisitSteps from '../components/FirstVisitSteps'
-import TrustStrip from '../components/TrustStrip'
-import { faqs, membership, salon, serviceCategories } from '../content/salon'
+import { faqs, membership, salon, serviceCategories, trustPoints } from '../content/salon'
 
 const highlights = serviceCategories.map((c) => ({
   id: c.id,
   title: c.title,
+  benefit: c.benefit,
   blurb: c.intro,
   from: c.items[0].price,
 }))
 
-const pillars = [
-  {
-    title: 'No pressure, ever',
-    body: 'Every session opens with a short check-in. We mention add-ons once, at the end — never mid-treatment.',
-  },
-  {
-    title: 'Month-to-month membership',
-    body: `${membership.name} is ${membership.price}, no contract. Pause or cancel anytime from your client portal.`,
-  },
-  {
-    title: 'One therapist, start to finish',
-    body: 'You keep the same provider visit to visit unless you ask to switch — consistency, not a rotating roster.',
-  },
-]
-
 export default function Home() {
   return (
     <div className="page-transition">
-      {/* Hero */}
-      <section className="mx-auto max-w-6xl px-6 pt-14 pb-16 sm:pt-20 sm:pb-24">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
-          <div>
-            <p className="eyebrow mb-4">{salon.neighborhood}</p>
-            <h1 className="font-serif text-4xl leading-[1.1] text-ink sm:text-5xl lg:text-[3.4rem]">
-              {salon.tagline}
-            </h1>
-            <p className="mt-5 max-w-md text-base text-stone">
-              Massage, facials, and body work <span className="font-semibold text-clay-deep">by appointment only</span> — a
-              small studio built around one idea: <span className="font-semibold text-clay-deep">slow down</span>, and be
-              genuinely looked after for an hour.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <NavLink to="/contact" className="btn-primary">
-                Book Now
-              </NavLink>
-              <NavLink to="/services" className="btn-secondary">
-                See Services & Pricing
-              </NavLink>
-            </div>
-          </div>
-
-          <DecorPanel variant={1} className="h-72 w-full sm:h-96 lg:h-[26rem]" label="Studio glimpse — placeholder art, real photography pending" />
-        </div>
-      </section>
-
-      {/* Objection-handling strip */}
-      <section className="border-y border-black/5 bg-sand">
-        <div className="mx-auto grid max-w-6xl gap-8 px-6 py-12 sm:grid-cols-3">
-          {pillars.map((p) => (
-            <div key={p.title}>
-              <p className="font-serif text-lg text-pine">{p.title}</p>
-              <p className="mt-2 text-sm text-stone">{p.body}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Trust/credibility cluster */}
-      <section className="mx-auto max-w-6xl px-6 py-16">
-        <p className="eyebrow mb-3">Why locals choose us</p>
-        <TrustStrip />
-      </section>
-
-      {/* Service highlights */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="eyebrow mb-3">What we offer</p>
-            <h2 className="font-serif text-3xl text-ink">Three ways to slow down</h2>
-          </div>
-          <NavLink to="/services" className="text-sm font-semibold text-clay-deep hover:underline">
-            View full menu & pricing →
-          </NavLink>
-        </div>
-
-        <div className="grid gap-6 sm:grid-cols-3">
-          {highlights.map((h, i) => (
-            <div key={h.id} className="rounded-2xl border border-black/5 bg-white p-6">
-              <DecorPanel variant={((i % 5) + 1) as 1 | 2 | 3 | 4 | 5} className="mb-5 h-36 w-full" />
-              <h3 className="font-serif text-xl text-ink">{h.title}</h3>
-              <p className="mt-2 text-sm text-stone">{h.blurb}</p>
-              <p className="mt-4 text-sm font-semibold text-clay-deep">From {h.from}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Membership */}
-      <section className="border-y border-black/5 bg-pine">
-        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 lg:grid-cols-[1.1fr_1fr] lg:items-center">
-          <div>
-            <p className="eyebrow mb-3 text-sand">Membership</p>
-            <h2 className="font-serif text-3xl text-cream">
-              {membership.name} — {membership.price}
-            </h2>
-            <p className="mt-4 max-w-md text-sm text-sand/90">
-              Built for people who want this to be a habit, not a splurge. No initiation fee, no long-term
-              commitment.
-            </p>
-            <p className="mt-4 max-w-md text-xs text-sand/70">{membership.mathNote}</p>
-            <NavLink to="/contact" className="btn-primary mt-6 !bg-clay hover:!bg-clay-deep">
-              Ask About Membership
+      {/* Hero -- full-bleed atmospheric panel, tagline overlaid, one clear action */}
+      <section className="relative flex min-h-[78vh] w-full items-end overflow-hidden sm:min-h-[86vh]">
+        <DecorPanel
+          variant={1}
+          className="absolute inset-0 h-full w-full rounded-none"
+          label="Studio glimpse — placeholder art, real photography pending"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent" />
+        <div className="relative mx-auto w-full max-w-6xl px-6 pb-16 sm:pb-24">
+          <p className="eyebrow mb-4 text-sand">{salon.neighborhood}</p>
+          <h1 className="max-w-2xl font-serif text-4xl leading-[1.1] text-white sm:text-5xl lg:text-[3.6rem]">
+            {salon.tagline}
+          </h1>
+          <p className="mt-5 max-w-md text-base text-white/85">
+            Massage, facials, and body work by appointment only — a small studio built around one idea: slow down,
+            and be genuinely looked after for an hour.
+          </p>
+          <div className="mt-8">
+            <NavLink to="/contact" className="btn-primary">
+              Reserve
             </NavLink>
           </div>
-          <ul className="space-y-3">
-            {membership.bullets.map((b) => (
-              <li key={b} className="flex gap-3 rounded-xl bg-white/5 p-4 text-sm text-sand/95">
-                <span className="mt-0.5 text-clay">✓</span>
-                <span>{b}</span>
-              </li>
-            ))}
-          </ul>
         </div>
+      </section>
+
+      {/* Why locals trust the studio -- objection-handling and credibility merged into one cluster */}
+      <section className="mx-auto max-w-6xl px-6 py-24">
+        <p className="eyebrow mb-3">Why locals choose us</p>
+        <h2 className="mb-12 font-serif text-3xl text-ink">A studio built to feel unhurried</h2>
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          {trustPoints.map((t) => (
+            <div key={t.label}>
+              <p className="font-serif text-lg text-pine">{t.label}</p>
+              <p className="mt-2 text-sm text-stone">{t.detail}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Service highlights -- alternating full-width image/text bands, one category per row */}
+      <section className="border-y border-black/5">
+        <div className="mx-auto max-w-6xl px-6 py-6">
+          <div className="flex flex-col gap-2 py-10 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="eyebrow mb-3">What we offer</p>
+              <h2 className="font-serif text-3xl text-ink">Three ways to slow down</h2>
+            </div>
+            <NavLink to="/services" className="text-sm font-semibold text-clay-deep hover:underline">
+              View full menu & pricing →
+            </NavLink>
+          </div>
+        </div>
+
+        {highlights.map((h, i) => (
+          <div key={h.id} className="border-t border-black/5 first:border-t-0">
+            <div
+              className={`mx-auto grid max-w-6xl gap-10 px-6 py-16 sm:py-20 lg:grid-cols-2 lg:items-center lg:gap-16 ${
+                i % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : ''
+              }`}
+            >
+              <DecorPanel variant={((i % 5) + 1) as 1 | 2 | 3 | 4 | 5} className="h-64 w-full sm:h-80 lg:h-[22rem]" />
+              <div>
+                <p className="eyebrow mb-3">{h.benefit}</p>
+                <h3 className="font-serif text-2xl text-ink sm:text-3xl">{h.title}</h3>
+                <p className="mt-4 max-w-md text-stone">{h.blurb}</p>
+                <div className="mt-6 flex flex-wrap items-center gap-5">
+                  <p className="text-sm font-semibold text-clay-deep">From {h.from}</p>
+                  <NavLink to="/services" className="text-sm font-semibold text-pine hover:underline">
+                    See this menu →
+                  </NavLink>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
       </section>
 
       {/* First-visit walkthrough */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
+      <section className="mx-auto max-w-6xl px-6 py-24">
         <FirstVisitSteps />
       </section>
 
       {/* FAQ preview */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
+      <section className="mx-auto max-w-6xl px-6 py-24">
         <p className="eyebrow mb-3">Good to know</p>
-        <h2 className="mb-8 font-serif text-3xl text-ink">A few things first-timers ask</h2>
-        <div className="grid gap-6 sm:grid-cols-2">
+        <h2 className="mb-10 font-serif text-3xl text-ink">A few things first-timers ask</h2>
+        <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
           {faqs.slice(0, 4).map((f) => (
-            <div key={f.q} className="rounded-2xl border border-black/5 bg-white p-6">
+            <div key={f.q}>
               <p className="font-medium text-ink">{f.q}</p>
               <p className="mt-2 text-sm text-stone">{f.a}</p>
             </div>
@@ -145,16 +110,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="mx-auto max-w-6xl px-6 pb-24">
-        <div className="rounded-3xl bg-sand px-8 py-14 text-center">
-          <h2 className="font-serif text-3xl text-ink">Ready to actually slow down for an hour?</h2>
-          <p className="mx-auto mt-3 max-w-md text-sm text-stone">
-            Appointments open daily except Monday. Tell us what you need and we'll confirm a time within one
-            business day.
+      {/* Single page-ending conversion moment -- membership + booking, not two competing banners */}
+      <section className="border-t border-black/5 bg-pine">
+        <div className="mx-auto max-w-3xl px-6 py-20 text-center">
+          <p className="eyebrow mb-3 text-sand">{membership.name} — {membership.price}</p>
+          <h2 className="font-serif text-3xl text-cream sm:text-4xl">Ready to make this a habit?</h2>
+          <p className="mx-auto mt-4 max-w-md text-sm text-sand/90">
+            No contract, no initiation fee — pause or cancel anytime. Or book a single session; appointments open
+            daily except Monday, and we'll confirm a time within one business day.
           </p>
-          <NavLink to="/contact" className="btn-primary mt-7 inline-flex">
-            Request an Appointment
+          <p className="mx-auto mt-3 max-w-md text-xs text-sand/70">{membership.mathNote}</p>
+          <NavLink to="/contact" className="btn-primary mt-8 inline-flex !bg-clay hover:!bg-clay-deep">
+            Reserve a Session
           </NavLink>
         </div>
       </section>

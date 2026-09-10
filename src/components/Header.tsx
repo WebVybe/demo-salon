@@ -39,7 +39,10 @@ export default function Header() {
           >
             {salon.phone}
           </a>
-          <NavLink to="/contact" className="btn-primary hidden !px-5 !py-2.5 text-sm sm:inline-flex">
+          <NavLink
+            to="/contact"
+            className="nav-link hidden text-sm font-semibold text-clay-deep sm:inline-flex"
+          >
             Book Now
           </NavLink>
 
@@ -76,7 +79,11 @@ export default function Header() {
               </li>
             ))}
             <li>
-              <NavLink to="/contact" onClick={() => setOpen(false)} className="btn-primary !px-5 !py-2.5 text-sm">
+              <NavLink
+                to="/contact"
+                onClick={() => setOpen(false)}
+                className="text-sm font-semibold text-clay-deep underline underline-offset-4"
+              >
                 Book Now
               </NavLink>
             </li>

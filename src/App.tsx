@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Footer from './components/Footer'
 import Header from './components/Header'
-import StickyBook from './components/StickyBook'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Gallery from './pages/Gallery'
@@ -13,7 +12,7 @@ export default function App() {
     <BrowserRouter>
       <div className="flex min-h-screen flex-col">
         <Header />
-        <main className="flex-1 pb-16 sm:pb-0">
+        <main className="flex-1">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
@@ -23,7 +22,6 @@ export default function App() {
           </Routes>
         </main>
         <Footer />
-        <StickyBook />
       </div>
     </BrowserRouter>
   )

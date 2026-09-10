@@ -16,13 +16,13 @@ export default function Services() {
 
       <nav
         aria-label="Jump to a service category"
-        className="sticky top-16 z-30 -mx-6 mt-8 flex gap-2 overflow-x-auto border-y border-black/5 bg-cream/95 px-6 py-3 backdrop-blur-md"
+        className="sticky top-16 z-30 -mx-6 mt-8 flex gap-8 overflow-x-auto border-y border-black/5 bg-cream/95 px-6 py-4 backdrop-blur-md"
       >
         {serviceCategories.map((cat) => (
           <a
             key={cat.id}
             href={`#${cat.id}`}
-            className="shrink-0 rounded-full border border-black/10 px-4 py-1.5 text-sm font-medium text-stone transition-colors hover:border-clay-deep hover:text-ink"
+            className="nav-link shrink-0 text-sm font-medium text-stone transition-colors hover:text-ink"
           >
             {cat.title}
           </a>
@@ -40,21 +40,21 @@ export default function Services() {
 
             <div className="mt-6 divide-y divide-black/5 rounded-2xl border border-black/5 bg-white">
               {cat.items.map((item) => (
-                <div key={`${item.name}-${item.duration}`} className="flex flex-col gap-2 p-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
-                  <div>
-                    <p className="font-medium text-ink">
-                      {item.name} <span className="text-stone">· {item.duration}</span>
+                <div key={`${item.name}-${item.duration}`} className="flex flex-col gap-3 p-6">
+                  <p className="text-base text-ink">{item.description}</p>
+                  <div className="flex flex-wrap items-baseline justify-between gap-3">
+                    <p className="text-sm text-stone">
+                      <span className="font-medium text-ink">{item.name}</span> · {item.duration}
                     </p>
-                    <p className="mt-1 text-sm text-stone">{item.description}</p>
-                  </div>
-                  <div className="flex shrink-0 items-center gap-4 sm:flex-col sm:items-end sm:gap-1.5">
-                    <p className="font-serif text-lg text-clay-deep">{item.price}</p>
-                    <NavLink
-                      to={`/contact?service=${encodeURIComponent(item.name)}`}
-                      className="text-xs font-semibold text-pine underline-offset-2 hover:underline"
-                    >
-                      Book this →
-                    </NavLink>
+                    <div className="flex shrink-0 items-center gap-4">
+                      <p className="font-serif text-base text-clay-deep">{item.price}</p>
+                      <NavLink
+                        to={`/contact?service=${encodeURIComponent(item.name)}`}
+                        className="text-xs font-semibold text-pine underline-offset-2 hover:underline"
+                      >
+                        Book this →
+                      </NavLink>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -63,7 +63,7 @@ export default function Services() {
         ))}
       </div>
 
-      <div className="mt-16 rounded-3xl bg-pine px-8 py-10 text-center">
+      <div className="mt-24 rounded-3xl bg-pine px-8 py-14 text-center">
         <p className="eyebrow mb-2 text-sand">Membership</p>
         <h2 className="font-serif text-2xl text-cream">
           {membership.name} — {membership.price}/month, no contract
@@ -76,12 +76,6 @@ export default function Services() {
         <p className="mx-auto mt-4 max-w-md text-xs text-sand/70">{membership.mathNote}</p>
         <NavLink to="/contact" className="btn-primary mt-6 inline-flex !bg-clay hover:!bg-clay-deep">
           Ask About Membership
-        </NavLink>
-      </div>
-
-      <div className="mt-12 text-center">
-        <NavLink to="/contact" className="btn-primary inline-flex">
-          Book Now
         </NavLink>
       </div>
     </div>
