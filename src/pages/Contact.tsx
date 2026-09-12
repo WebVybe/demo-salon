@@ -165,7 +165,7 @@ export default function Contact() {
       <p className="eyebrow mb-3">Book Now</p>
       <h1 className="font-serif text-4xl text-ink">Reserve your visit</h1>
       <p className="mt-4 max-w-xl text-stone">
-        Pick a service, an open day, and a time — a real front desk would confirm it on the spot. For anything
+        Pick a service, an open day, and a time. A real front desk would confirm it on the spot. For anything
         urgent, call the studio directly.
       </p>
 
@@ -193,7 +193,7 @@ export default function Contact() {
           {step === 'service' && (
             <div>
               <h2 className="font-serif text-2xl text-ink">What are you booking?</h2>
-              <p className="mt-2 text-sm text-stone">Choose a specific service — pricing and duration included.</p>
+              <p className="mt-2 text-sm text-stone">Choose a specific service: pricing and duration included.</p>
               <div className="mt-6 space-y-6">
                 {serviceCategories.map((cat) => (
                   <div key={cat.id}>
@@ -286,7 +286,7 @@ export default function Contact() {
                     </div>
                   ) : (
                     <p className="mt-3 text-sm text-stone">
-                      No slots left {selectedDay.isToday ? 'today' : 'that day'} — try another day.
+                      No slots left {selectedDay.isToday ? 'today' : 'that day'}. Try another day.
                     </p>
                   )}
                 </>

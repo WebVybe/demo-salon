@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom'
 import DecorPanel from '../components/DecorPanel'
 import TrustStrip from '../components/TrustStrip'
 import { hours, salon } from '../content/salon'
+import aboutStudio from '../assets/images/about-studio.jpg' // Pexels: jessejames, free commercial license
 
 export default function About() {
   return (
@@ -13,17 +14,21 @@ export default function About() {
             <h1 className="font-serif text-4xl text-ink">Why {salon.name} exists</h1>
             <p className="mt-5 text-stone">
               {salon.founderName.split(',')[0]} opened {salon.name} in {salon.founded} after a decade working front
-              desk-to-table shifts at bigger day spas around San Diego — booked back to back, fifteen minutes
+              desk-to-table shifts at bigger day spas around San Diego, booked back to back, fifteen minutes
               between clients, upsells baked into the script. She wanted a studio where a session actually starts on
               time, ends when it's supposed to, and nobody has to ask twice for a lighter touch.
             </p>
             <p className="mt-4 text-stone">
               That's still the whole model: one room at a time, appointments spaced with real breathing room, and a
-              short menu done well instead of a long one done fast. North Park was the easy part — {salon.founderName.split(',')[0]} has lived two blocks
+              short menu done well instead of a long one done fast. North Park was the easy part: {salon.founderName.split(',')[0]} has lived two blocks
               from the studio since before it existed.
             </p>
           </div>
-          <DecorPanel variant={4} className="h-72 w-full sm:h-96" label="Studio glimpse — placeholder art, real photography pending" />
+          <DecorPanel
+            className="h-72 w-full sm:h-96"
+            src={aboutStudio}
+            alt="Elegant spa treatment room with soft ambient lighting"
+          />
         </div>
       </section>
 

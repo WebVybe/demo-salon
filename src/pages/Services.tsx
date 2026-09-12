@@ -73,7 +73,7 @@ export default function Services() {
       <div className="mt-24 rounded-3xl bg-pine px-8 py-14 text-center">
         <p className="eyebrow mb-2 text-sand">Membership</p>
         <h2 className="font-serif text-2xl text-cream">
-          {membership.name} — {membership.price}, no contract
+          {membership.name}: {membership.price}, no contract
         </h2>
         <ul className="mx-auto mt-4 max-w-lg space-y-1 text-sm text-sand/90">
           {membership.bullets.map((b) => (

@@ -2,6 +2,17 @@ import { NavLink } from 'react-router-dom'
 import DecorPanel from '../components/DecorPanel'
 import FirstVisitSteps from '../components/FirstVisitSteps'
 import { faqs, membership, salon, serviceCategories, trustPoints } from '../content/salon'
+// Photo credits (Pexels license: free for commercial use, no attribution required):
+import heroStudio from '../assets/images/hero-studio.jpg' // anntarazevich
+import serviceMassage from '../assets/images/service-massage.jpg' // koolshooters
+import serviceFacial from '../assets/images/service-facial.jpg' // Gustavo Fring
+import serviceBodywork from '../assets/images/service-bodywork.jpg' // babydov
+
+const highlightImages: Record<string, string> = {
+  massage: serviceMassage,
+  skincare: serviceFacial,
+  bodywork: serviceBodywork,
+}
 
 const highlights = serviceCategories.map((c) => ({
   id: c.id,
@@ -9,6 +20,7 @@ const highlights = serviceCategories.map((c) => ({
   benefit: c.benefit,
   blurb: c.intro,
   from: c.items[0].price,
+  image: highlightImages[c.id],
 }))
 
 export default function Home() {
@@ -17,9 +29,9 @@ export default function Home() {
       {/* Hero -- full-bleed atmospheric panel, tagline overlaid, one clear action */}
       <section className="relative flex min-h-[78vh] w-full items-end overflow-hidden sm:min-h-[86vh]">
         <DecorPanel
-          variant={1}
           className="absolute inset-0 h-full w-full rounded-none"
-          label="Studio glimpse — placeholder art, real photography pending"
+          src={heroStudio}
+          alt="Tranquil massage room with natural light and neatly arranged furnishings"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent" />
         <div className="relative mx-auto w-full max-w-6xl px-6 pb-16 sm:pb-24">
@@ -28,7 +40,7 @@ export default function Home() {
             {salon.tagline}
           </h1>
           <p className="mt-5 max-w-md text-base text-white/85">
-            Massage, facials, and body work by appointment only — a small studio built around one idea: slow down,
+            Massage, facials, and body work by appointment only, a small studio built around one idea: slow down,
             and be genuinely looked after for an hour.
           </p>
           <div className="mt-8">
@@ -74,7 +86,7 @@ export default function Home() {
                 i % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : ''
               }`}
             >
-              <DecorPanel variant={((i % 5) + 1) as 1 | 2 | 3 | 4 | 5} className="h-64 w-full sm:h-80 lg:h-[22rem]" />
+              <DecorPanel className="h-64 w-full sm:h-80 lg:h-[22rem]" src={h.image} alt={h.title} />
               <div>
                 <p className="eyebrow mb-3">{h.benefit}</p>
                 <h3 className="font-serif text-2xl text-ink sm:text-3xl">{h.title}</h3>
@@ -113,10 +125,10 @@ export default function Home() {
       {/* Single page-ending conversion moment -- membership + booking, not two competing banners */}
       <section className="border-t border-black/5 bg-pine">
         <div className="mx-auto max-w-3xl px-6 py-20 text-center">
-          <p className="eyebrow mb-3 text-sand">{membership.name} — {membership.price}</p>
+          <p className="eyebrow mb-3 text-sand">{membership.name}: {membership.price}</p>
           <h2 className="font-serif text-3xl text-cream sm:text-4xl">Ready to make this a habit?</h2>
           <p className="mx-auto mt-4 max-w-md text-sm text-sand/90">
-            No contract, no initiation fee — pause or cancel anytime. Or book a single session; appointments open
+            No contract, no initiation fee, and you can pause or cancel anytime. Or book a single session; appointments open
             daily except Monday, and we'll confirm a time within one business day.
           </p>
           <p className="mx-auto mt-3 max-w-md text-xs text-sand/70">{membership.mathNote}</p>
